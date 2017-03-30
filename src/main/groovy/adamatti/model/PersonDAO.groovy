@@ -8,7 +8,7 @@ import groovy.util.logging.Slf4j
 class PersonDAO {
     //TODO move it to a property file
 	private static final String TMP_FOLDER = System.getProperty('java.io.tmpdir')
-    private static final File FOLDER = new File("${TMP_FOLDER}spock")
+    private static final File FOLDER = new File(TMP_FOLDER,"spock")
 
 	PersonDAO(){
 		FOLDER.mkdirs()
