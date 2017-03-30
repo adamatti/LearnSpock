@@ -1,0 +1,82 @@
+<html ng-app="app">
+<head>
+    <title>Sample</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
+
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous">
+    </script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+          crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="container" ng-controller="mainCtrl">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th ng-click="reverse = !reverse;predicate = 'Name'">Name</th>
+                    <th ng-click="reverse = !reverse;predicate = 'address.city'">City</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th><input type="text" ng-model="search.name" class="form-control"></th>
+                    <th><input type="text" ng-model="search.address.city" class="form-control"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in rows | filter:search | orderBy:predicate:reverse">
+                    <td><input type="text" ng-model="row.name"></td>
+                    <td>{{row.address.city}}</td>
+                    <td>
+                        <input type="button" value="Save" class="btn btn-success" ng-click="save(row)">
+                        <input type="button" value="Delete" class="btn btn-danger" ng-click="delete(row)">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="text" ng-model="newRow.name" id="newName"></td>
+                    <td><input type="text" ng-model="newRow.address.city"></td>
+                    <td><input type="button" value="Save" class="btn btn-success" ng-click="save(newRow);newRow={}" id="btnSave"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script>
+angular.module('app', ['ngResource'])
+.factory('Person', ['$resource',function($resource){
+    return $resource("/person");
+}])
+.controller('mainCtrl', function($scope,Person){
+    $scope.rows = Person.query();
+    $scope.save = function(row){
+        Person.save(row,function(resp, headers){
+            $scope.rows = Person.query();
+        });
+    }
+    $scope.delete = function(row){
+        Person.delete(row,function(resp, headers){
+            $scope.rows = Person.query();
+        });
+    }
+})
+</script>
+</body>
+</html>

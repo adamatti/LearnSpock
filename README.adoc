@@ -1,0 +1,19 @@
+Pet project to show Spock capabilities
+
+#### Topics to Cover
+* Project Structure
+* Cucumber
+* Power Asset
+* Data driven test
+* Stub x mock x visitor
+* Reports
+* Unit x Service
+* backup
+** Spring
+** Geb
+
+#### References
+* http://testerstories.com/2016/03/why-test-engineers-should-learn-geb-and-spock/
+* http://slidedeck.io/thecodesmith/spock-talk
+* https://thejavatar.com/testing-with-spock
+* http://imasters.com.br/front-end/javascript/testes-em-javascript-diferenca-entre-fake-spy-stub-e-mock
