@@ -5,7 +5,9 @@ Pet project to show Spock capabilities
 #### Topics to Cover
 * Project Structure
 * Cucumber
+* Given / When / Then / Expect
 * Power Asset
+* Old()
 * Data driven test
 * Stub x mock x visitor
 * Reports
