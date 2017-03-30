@@ -42,4 +42,9 @@ dependencies {
 
 }
 
+task console (dependsOn: "classes", type: JavaExec ) {
+	main = "groovy.ui.Console"
+	classpath = sourceSets.main.runtimeClasspath
+}
+
 task coverage(dependsOn: ['check','jacocoTestReport'])
