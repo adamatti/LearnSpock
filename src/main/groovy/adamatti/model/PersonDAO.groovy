@@ -7,8 +7,12 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class PersonDAO {
     //TODO move it to a property file
-    private static final String FOLDER_PATH = "C:/Temp/spock"
-    private static final File FOLDER = new File(FOLDER_PATH)
+	private static final String TMP_FOLDER = System.getProperty('java.io.tmpdir')
+    private static final File FOLDER = new File("${TMP_FOLDER}spock")
+
+	PersonDAO(){
+		FOLDER.mkdirs()
+	}
 
     Person save(Person person){
         log.debug "${person}"
