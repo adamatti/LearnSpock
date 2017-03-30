@@ -1,3 +1,5 @@
+image::https://travis-ci.org/adamatti/LearnSpock.svg?branch=master[link="https://travis-ci.org/adamatti/LearnSpock"]
+
 Pet project to show Spock capabilities
 
 #### Topics to Cover
